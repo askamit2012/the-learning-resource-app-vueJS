@@ -65,11 +65,23 @@ export default {
       this.storedResources.push(newResource);
       this.selectedTab = 'stored-resources';
     },
+    removeResource(resId) {
+      // this will not work. Again find out why?
+      //   this.storedResources = this.storedResources.filter(
+      //     (res) => res.id !== resId
+      //   );
+      const resIndex = this.storedResources.findIndex(
+        (res) => res.id === resId
+      );
+      this.storedResources.splice(resIndex, 1);
+      console.log(resIndex);
+    },
   },
   provide() {
     return {
       resources: this.storedResources,
       addResource: this.addResource,
+      deleteResource: this.removeResource,
     };
   },
   //   inject: ['newResource'],
